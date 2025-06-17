@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
 
 AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-0529dc4ac677bb0be" # replace with your SG ID
