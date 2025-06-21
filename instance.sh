@@ -20,6 +20,6 @@ fi
     echo "$instance IP address: $IP"
 
 #calling the route53 script
- /home/ec2-user/shell-script-roboshop/route53.sh $RECORD_NAME $IP
+  sh /home/ec2-user/shell-script-roboshop/route53.sh $RECORD_NAME $IP
 
 done
