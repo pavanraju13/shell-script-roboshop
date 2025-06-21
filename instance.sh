@@ -5,7 +5,7 @@ SG_ID="sg-0529dc4ac677bb0be"
 
 Time_stamp=$( date +%Y-%m-%d-%H-%M-%S )
 DOMAIN_NAME=clouddevops.life
-
+ZONE_ID=Z0511103ULD2JWV1IRW1
 for instance in $@
 do 
     INSTANCE_ID=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f --instance-type t2.small --security-group-ids sg-0529dc4ac677bb0be --tag-specifications "ResourceType=instance,Tags=[{Key=Name, Value=$instance}]" --query "Instances[0].InstanceId" --output text)
