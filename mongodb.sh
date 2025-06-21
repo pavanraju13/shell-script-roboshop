@@ -18,6 +18,7 @@ then
 echo -e "${G} $2  successfully ${N}" 
 else
 echo -e "${R} $2 not successfull ${N}"
+exit 2
 fi
 }
 
@@ -27,6 +28,7 @@ then
 echo -e "${G} you are a root user ${N}"
 else
 echo -e "${R} Error Permission denied you don't have root privileges ${N}"
+exit 1
 fi
 
 cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh  | tee -a $REPO_FILE
