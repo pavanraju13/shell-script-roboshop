@@ -14,5 +14,5 @@ if [ $1 -lt 30 ]
 then
 echo "Given number $1 is less than 30"
 else
-echo "Given number $1 is greater than 30"
+echo "Given number $1 is greater than or equal to 30"
 fi
