@@ -18,3 +18,4 @@ else
         RECORD_NAME="$instance.$DOMAIN_NAME"
 fi
     echo "$instance IP address: $IP"
+done
