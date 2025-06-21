@@ -4,12 +4,12 @@ REPO_FILE=/etc/yum.repos.d/mongo.repo
 USER_ID=$( id -u )
 LOG_FILE=/var/log/mongod.log
 
-R="e\[31m"   #Red color
-G="e\[32m"   #Green color
-B="e\[33m"   #Blue color
-Y="e\[34m"   #Yellow color
-M="e\[35m"   #Magenita colr
-N="e\[0m"     #Normal color
+R="\e[31m"   #Red color
+G="\e[32m"   #Green color
+B="\e[33m"   #Blue color
+Y="\e[34m"   #Yellow color
+M="\e[35m"   #Magenita colr
+N="\e[0m"     #Normal color
 
 RESULT() {
 
