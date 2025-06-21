@@ -1,5 +1,5 @@
 #!/bin/bash
-TIME_STAMP=$( date +%Y-%m-%d_%H-&M-%S )
+TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
 REPO_FILE=/etc/yum.repos.d/mongo.repo
 USER_ID=$( id -u )
 LOG_FILE=/var/log/mongod.log
