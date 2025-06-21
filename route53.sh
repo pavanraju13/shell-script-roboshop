@@ -5,7 +5,6 @@ IP=$2
 ZONE_ID=Z0511103ULD2JWV1IRW1
 
 
-   echo "$instance IP address: $IP"
 
     aws route53 change-resource-record-sets \
     --hosted-zone-id $ZONE_ID \
