@@ -22,6 +22,6 @@ aws route53 change-resource-record-sets \
             }]
         }
         }]
-    }'
+    }' &> /dev/null
 
     echo "Record created for $instance"
