@@ -4,6 +4,8 @@ RECORD_NAME=$1
 IP=$2
 ZONE_ID=Z0511103ULD2JWV1IRW1
 
+
+
 aws route53 change-resource-record-sets \
     --hosted-zone-id $ZONE_ID \
     --change-batch '
@@ -21,3 +23,5 @@ aws route53 change-resource-record-sets \
         }
         }]
     }'
+
+    echo "Record created for $instance"
