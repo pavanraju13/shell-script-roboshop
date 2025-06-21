@@ -4,6 +4,7 @@ AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-0529dc4ac677bb0be"
 Instances=$1
 Time_stamp=$( date +%Y-%m-%d-%H-%M-%S )
+DOMAIN_NAME=clouddevops.life
 
 for instance in $Instances
 do 
@@ -14,6 +15,6 @@ then
         RECORD_NAME="$instance.$DOMAIN_NAME"
 else
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
-        RECORD_NAME="$DOMAIN_NAME"
+        RECORD_NAME="$instance.$DOMAIN_NAME"
 fi
     echo "$instance IP address: $IP"
