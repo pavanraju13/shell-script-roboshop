@@ -10,7 +10,7 @@ echo "Number is: $i"
 done
 
 i=$1
-if [ $1 -le 30 ]
+if [ $1 -lt 30 ]
 then
 echo "Given number $1 is less than 30"
 else
