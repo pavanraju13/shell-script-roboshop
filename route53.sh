@@ -24,5 +24,9 @@ aws route53 change-resource-record-sets \
         }
         }]
     }' &> /dev/null
-
-    echo "Record created for $instance"
+if [ $? -eq 0 ]
+then
+   echo -e "\e[32mRoute53 record created for $instance successfully\e[0m"
+else
+   echo -e "\e[31m32mRoute53 record created for $instance failure\e[0m"
+fi
