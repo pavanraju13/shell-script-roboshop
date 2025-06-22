@@ -31,22 +31,22 @@ echo -e "${R} Error Permission denied you don't have root privileges ${N}"
 exit 1
 fi
 
-cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh  | tee -a $REPO_FILE
+cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh  | tee -a $LOG_FILE
 RESULT $? "Mongodb"
 
-dnf install mongodb-org -y | tee -a $REPO_FILE
+dnf install mongodb-org -y | tee -a $LOG_FILE
 RESULT $? "mongodb-org"
 
-systemctl start mongod | tee -a $REPO_FILE
+systemctl start mongod | tee -a $LOG_FILE
 RESULT $? "mongod started"
 
-systemctl enable mongod | tee -a $REPO_FILE
+systemctl enable mongod | tee -a $LOG_FILE
 RESULT $? "enabled mongod"
 
-sed -i 's/127.0.0.0/0.0.0.0/g' /etc/mongod.conf | tee -a $REPO_FILE
+sed -i 's/127.0.0.0/0.0.0.0/g' /etc/mongod.conf | tee -a $LOG_FILE
 RESULT $? "changed the listner port address"
 
-systemctl start mongod | tee -a $REPO_FILE
+systemctl start mongod | tee -a $LOG_FILE
 RESULT $? "mongod started"
 
 
