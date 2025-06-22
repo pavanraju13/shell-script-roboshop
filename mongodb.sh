@@ -35,7 +35,7 @@ cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh /etc/mongod.conf | tee -a 
 RESULT $? "Mongodb"
 
 dnf install mongodb-org -y | tee -a $LOG_FILE
-RESULT $? "mongodb-org"
+RESULT $? "Installing mongodb-org"
 
 systemctl start mongod | tee -a $LOG_FILE
 RESULT $? "mongod started"
