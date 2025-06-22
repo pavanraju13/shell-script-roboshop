@@ -2,7 +2,7 @@
 TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
 REPO_FILE=/etc/yum.repos.d/mongo.repo
 USER_ID=$( id -u )
-SCRIPT_NAME=$( $0 | cut -d "." -f1 )
+SCRIPT_NAME=$(basename $0 | cut -d "." -f1 )
 LOG_FILE=/var/log/$SCRIPT_NAME.log
 R="\e[31m"   #Red color
 G="\e[32m"   #Green color
@@ -31,7 +31,7 @@ echo -e "${R} Error Permission denied you don't have root privileges ${N}"
 exit 1
 fi
 
-cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh /etc/mongod.conf | tee -a $LOG_FILE
+cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh $REPO_FILE | tee -a $LOG_FILE
 RESULT $? "Mongodb"
 
 dnf install mongodb-org -y | tee -a $LOG_FILE
