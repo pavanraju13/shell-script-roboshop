@@ -2,8 +2,8 @@
 TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
 REPO_FILE=/etc/yum.repos.d/mongo.repo
 USER_ID=$( id -u )
-LOG_FILE=/var/log/mongod.log
-
+SCRIPT_NAME=$( $0 | cut -d "." -f1 )
+LOG_FILE=/var/log/$SCRIPT_NAME.log
 R="\e[31m"   #Red color
 G="\e[32m"   #Green color
 B="\e[33m"   #Blue color
