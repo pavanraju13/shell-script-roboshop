@@ -31,7 +31,7 @@ echo -e "${R} Error Permission denied you don't have root privileges ${N}"
 exit 1
 fi
 
-cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh  | tee -a $LOG_FILE
+cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh /etc/mongod.conf | tee -a $LOG_FILE
 RESULT $? "Mongodb"
 
 dnf install mongodb-org -y | tee -a $LOG_FILE
