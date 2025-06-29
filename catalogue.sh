@@ -74,24 +74,29 @@ fi
 curl -o $Temp_Folder https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>> $LOG_FILE
 RESULT $? "downloaded the code into the $Temp_Folder"
 
-cd $DIR
+cd $DIR                                  #switched to the app directory
 RESULT $? "Switched to $DIR"
-rm -rf /app/*
-RESULT $? "Deleted the content"
-unzip $Temp_Folder 
-RESULT $? "unzipped the application code"
 
-cp $Current_Path/catalogue_service.sh  $Service &>> $LOG_FILE
+rm -rf /app/* &>> $LOG_FILE                #Deleting the old content
+RESULT $? "Deleted the content"
+
+unzip $Temp_Folder &>> $LOG_FILE           #Unzipping the temp folder in app directory
+RESULT $? "unzipped the application code"
+npm install &>> $LOG_FILE
+RESULT $? "Installed npm packages"
+
+cp $Current_Path/catalogue_service.sh  $Service &>> $LOG_FILE     #copying the system conf file to .service
 RESULT $? "Service configuration file copied"
 
-systemctl daemon-reload &>> $LOG_FILE
+systemctl daemon-reload &>> $LOG_FILE   #Reload the deamon
 RESULT $? "deamon reload"
 
-systemctl enable catalogue &>> $LOG_FILE
+systemctl enable catalogue &>> $LOG_FILE    #start enable restart
 systemctl start catalogue &>> $LOG_FILE
-RESULT $? "Enabled and started"
+systemctl restart catalogue &>> $LOG_FILE
+RESULT $? "Enabled,started and restarted"
 
-cp $Current_Path/mongo-repo.sh $REPO_FILE &>> $LOG_FILE
+cp $Current_Path/mongo-repo.sh $REPO_FILE &>> $LOG_FILE  #copying the repo content to mongod repo file
 RESULT $? "copied the mongod repo content"
 
 dnf install mongodb-mongosh -y &>> $LOG_FILE
@@ -101,11 +106,12 @@ RESULT $? "Installed the mongodb"
 mongosh --host mongodb.clouddevops.life </app/db/master-data.js  &>> $LOG_FILE
 RESULT $? "Load the schema"
 
-curl http://localhost:8080/health
+curl http://localhost:8080/health   #check the health of the calaogue 
 
 #mongosh --host mongodb.clouddevops.life &>> $LOG_FILE
 #RESULT $? "connecting to the mongodb"
 
+echo "jabil application catalogue component completed"
 
 
 
