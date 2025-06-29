@@ -111,7 +111,7 @@ curl http://localhost:8080/health   #check the health of the calaogue
 #mongosh --host mongodb.clouddevops.life &>> $LOG_FILE
 #RESULT $? "connecting to the mongodb"
 
-echo "jabil application catalogue component completed"
+echo -e \n "jabil application catalogue component completed"
 
 
 
