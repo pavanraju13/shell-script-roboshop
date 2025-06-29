@@ -40,16 +40,16 @@ exit 1
 fi
 
 dnf list module nodejs  &>> $LOG_FILE  #List the nodejs versions
-RESULT $? "Nodejs module"
+RESULT $? "List Nodejs module"
 
 dnf module disable nodejs -y &>> $LOG_FILE #Disable the current nodejs module/version
-RESULT $? "Disable nodejs"
+RESULT $? "Disable default nodejs"
 
 dnf module enable nodejs:20 -y &>> $LOG_FILE #enable nodejs 20 version
-RESULT $? "Disable nodejs"
+RESULT $? "enable nodejs version 20"
 
 dnf install nodejs -y &>> $LOG_FILE #Installing the nodejs
-RESULT $? "Disable nodejs"
+RESULT $? "Installing nodejs"
 
 id $USER   &>> $LOG_FILE        #checking user present or not
 if [ $? -ne 0 ]     
