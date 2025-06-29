@@ -11,6 +11,7 @@ Y="\e[34m"   #Yellow color
 M="\e[35m"   #Magenita colr
 N="\e[0m"     #Normal color
 
+#This is a function
 RESULT() {
 
 if [  $1 -eq 0 ]
@@ -22,32 +23,34 @@ exit 2
 fi
 }
 
-
+#Checking the root access
 if [ $USER_ID -eq 0 ]
 then
-echo -e "${G} you are a root user ${N}"
+echo -e "${G} you are a root user ${N}" | tee -a $LOG_FILE
 else
-echo -e "${R} Error Permission denied you don't have root privileges ${N}"
+echo -e "${R} Error Permission denied you don't have root privileges ${N}" | tee -a $LOG_FILE
 exit 1
 fi
 
-cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh $REPO_FILE | tee -a $LOG_FILE
+cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh $REPO_FILE #Copying the mongo-repo content to repo_file
 RESULT $? "Mongodb"
 
-dnf install mongodb-org -y | tee -a $LOG_FILE
+dnf install mongodb-org -y &>> $LOG_FILE  # Installing the mongodb
 RESULT $? "Installing mongodb-org"
 
-systemctl start mongod | tee -a $LOG_FILE
+systemctl start mongod &>> $LOG_FILE #starting the mongod
 RESULT $? "mongod started"
 
-systemctl enable mongod | tee -a $LOG_FILE
+systemctl enable mongod &>> $LOG_FILE #Enabling mongod
 RESULT $? "enabled mongod"
 
-sed -i 's/127.0.0.0/0.0.0.0/g' /etc/mongod.conf | tee -a $LOG_FILE
+sed -i 's/127.0.0.0/0.0.0.0/g' /etc/mongod.conf &>> $LOG_FILE #Replacing the listner port address
 RESULT $? "changed the listner port address"
 
-systemctl start mongod | tee -a $LOG_FILE
-RESULT $? "mongod started"
+systemctl restart mongod &>> $LOG_FILE  #Starting the mongodb
+RESULT $? "mongod restarted"
+
+
 
 
 
