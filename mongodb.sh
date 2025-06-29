@@ -44,7 +44,7 @@ RESULT $? "mongod started"
 systemctl enable mongod &>> $LOG_FILE #Enabling mongod
 RESULT $? "enabled mongod"
 
-sed -i 's/127.0.0.0/0.0.0.0/g' /etc/mongod.conf &>> $LOG_FILE #Replacing the listner port address
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOG_FILE #Replacing the listner port address
 RESULT $? "changed the listner port address"
 
 systemctl restart mongod &>> $LOG_FILE  #Starting the mongodb
