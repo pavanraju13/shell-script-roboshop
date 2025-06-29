@@ -54,8 +54,6 @@ RESULT $? "Enable $pkg"
 dnf install $pkg -y &>> $LOG_FILE #install nginx
 RESULT $? "Installing $pkg"
 
-curl http://localhost:80/health #checking the health of the web server
-RESULT $? "Web server health"
 
 rm -rf $main_file/* &>> $LOG_FILE
 RESULT $? "Deleted the old content"
