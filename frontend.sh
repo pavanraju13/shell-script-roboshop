@@ -62,7 +62,7 @@ curl -o $Temp_Folder https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
 RESULT $? "download the code to the tmp directory"
 
 cd $main_file &>> $LOG_FILE
-unzip $Temp_Folder 
+unzip $Temp_Folder &>> $LOG_FILE
 RESULT $? "Unzipped the folder"
 
 cp $Current_Path/$pkg.conf $conf &>> $LOG_FILE
