@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
 TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
 USER_ID=$( id -u )
 SCRIPT_NAME=$(basename $0 | cut -d "." -f1 )
@@ -111,7 +110,7 @@ curl http://localhost:8080/health   #check the health of the calaogue
 #mongosh --host mongodb.clouddevops.life &>> $LOG_FILE
 #RESULT $? "connecting to the mongodb"
 
-echo -e "\njabil application catalogue component completed"
+echo -e "\njabil application catalogue component completed at $TIME_STAMP"
 
 
 
