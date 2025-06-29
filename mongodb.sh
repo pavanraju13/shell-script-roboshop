@@ -33,7 +33,7 @@ exit 1
 fi
 
 cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh $REPO_FILE #Copying the mongo-repo content to repo_file
-RESULT $? "Mongodb"
+RESULT $? "Mongodb content repo"
 
 dnf install mongodb-org -y &>> $LOG_FILE  # Installing the mongodb
 RESULT $? "Installing mongodb-org"
