@@ -76,6 +76,8 @@ RESULT $? "downloaded the code into the $Temp_Folder"
 
 cd $DIR
 RESULT $? "Switched to $DIR"
+rm -rf /app/*
+RESULT $? "Deleted the content"
 unzip $Temp_Folder 
 RESULT $? "unzipped the application code"
 
@@ -94,6 +96,7 @@ RESULT $? "copied the mongod repo content"
 
 dnf install mongodb-mongosh -y &>> $LOG_FILE
 RESULT $? "Installed the mongodb" 
+
 
 mongosh --host mongodb.clouddevops.life </app/db/master-data.js  &>> $LOG_FILE
 RESULT $? "Load the schema"
