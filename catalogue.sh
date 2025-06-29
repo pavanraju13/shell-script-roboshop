@@ -50,7 +50,7 @@ RESULT $? "Disable nodejs"
 dnf install nodejs -y &>> $LOG_FILE #Installing the nodejs
 RESULT $? "Disable nodejs"
 
-id $USER              #checking user present or not
+id $USER   &>> $LOG_FILE        #checking user present or not
 if [ $? -ne 0 ]     
 then
 echo "$USER is not created ...creating the user" &>> $LOG_FILE
@@ -75,7 +75,7 @@ RESULT $? "downloaded the code into the $Temp_Folder"
 
 cd $DIR
 RESULT $? "Switched to $DIR"
-unzip $DIR 
+unzip $Temp_Folder 
 RESULT $? "unzipped the application code"
 
 cp $Current_Path/catalogue_service.sh  $Service &>> $LOG_FILE
