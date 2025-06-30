@@ -15,7 +15,7 @@ Y="\e[34m"   #Yellow color
 M="\e[35m"   #Magenita colr
 N="\e[0m"     #Normal color
 
-echo "script started excution at $START_TIME_STAMP"
+echo "script started excution at $TIME_STAMP"
 #This is a function
 RESULT() {
 
