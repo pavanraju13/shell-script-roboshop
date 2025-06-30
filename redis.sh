@@ -2,7 +2,7 @@
 TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
 START_TIME_STAMP=$( date +%S )
 END_TIME_STAMP=$( date +%S )
-Conf_File=/etc/$pkg/$pkg.conf
+Conf_File=/etc/redis/redis.conf
 USER_ID=$( id -u )
 SCRIPT_NAME=$(basename $0 | cut -d "." -f1 )
 LOG_FILE=/var/log/$SCRIPT_NAME.log
