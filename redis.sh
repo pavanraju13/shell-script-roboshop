@@ -55,7 +55,7 @@ RESULT $? "Enable and started $pkg"
 
 END_TIME_STAMP=$( date +%S )
 
-Total_time=$(( $END_TIME_STAMP - $START_TIME_STAMP ))
+Total_time=$(( END_TIME_STAMP - START_TIME_STAMP ))
 Script excuted successfully at $Total_time seconds.
 
 
