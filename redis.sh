@@ -52,7 +52,7 @@ RESULT $? "Changing the listner port and protected mode"
 
 systemctl enable $pkg &>>$LOG_FILE
 systemctl start $pkg &>>$LOG_FILE
-RESUTL $? "Enable and started $pkg"
+RESULT $? "Enable and started $pkg"
 
 Total_time=$(( $END_TIME_STAMP - $START_TIME_STAMP ))
 Script excuted successfully at $Total_time seconds.
