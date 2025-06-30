@@ -98,10 +98,11 @@ systemctl restart $component &>> $LOG_FILE
 RESULT $? "Enabled,started and restarted"
 
 END_TIME_STAMP=$( date +%S )
+END_TIME_LOG=$(date +%Y-%m-%d_%H-%M-%S)
 
 Total_time=$(( END_TIME_STAMP - START_TIME_STAMP ))
 
 echo "script excuted in $Total_time seconds"
 
-echo -e "\njabil application $component component completed at $TIME_STAMP"
+echo -e "\njabil application $component component completed at $END_TIME_LOG"
 
