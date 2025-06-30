@@ -31,29 +31,3 @@ else
 echo -e "${R} Error Permission denied you don't have root privileges ${N}" | tee -a $LOG_FILE
 exit 1
 fi
-
-cp /home/ec2-user/shell-script-roboshop/mongo-repo.sh $REPO_FILE #Copying the mongo-repo content to repo_file
-RESULT $? "Mongodb content repo"
-
-dnf install mongodb-org -y &>> $LOG_FILE  # Installing the mongodb
-RESULT $? "Installing mongodb-org"
-
-systemctl start mongod &>> $LOG_FILE #starting the mongod
-RESULT $? "mongod started"
-
-systemctl enable mongod &>> $LOG_FILE #Enabling mongod
-RESULT $? "enabled mongod"
-
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOG_FILE #Replacing the listner port address
-RESULT $? "changed the listner port address"
-
-systemctl restart mongod &>> $LOG_FILE  #Starting the mongodb
-RESULT $? "mongod restarted"
-
-
-
-
-
-
-
-

@@ -22,9 +22,9 @@ RESULT() {
 
 if [  $1 -eq 0 ]
 then
-echo -e "${G} $2 successfully ${N}" 
+echo -e "$2.. ${G}successfully ${N}" 
 else
-echo -e "${R} $2 not successful ${N}"
+echo -e "$2..${R} failure ${N}"
 exit 2
 fi
 }
