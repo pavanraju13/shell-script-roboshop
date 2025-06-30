@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
+START_TIME_STAMP=$( date +%s )
 USER_ID=$( id -u )
 SCRIPT_NAME=$(basename $0 | cut -d "." -f1 )
 LOG_FILE=/var/log/$SCRIPT_NAME.log
