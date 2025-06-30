@@ -1,4 +1,5 @@
 #!/bin/bash
+TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
 START_TIME_STAMP=$( date +%S )
 END_TIME_STAMP=$( date +%S )
 Conf_File=/etc/$pkg/$pkg.conf
