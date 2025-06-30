@@ -86,7 +86,7 @@ RESULT $? "unzipped the application code"
 npm install &>> $LOG_FILE
 RESULT $? "Installed npm packages"
 
-cp $Current_Path/$component.sh  $Service &>> $LOG_FILE     #copying the system conf file to .service
+cp $Current_Path/$component.service  $Service &>> $LOG_FILE     #copying the system conf file to .service
 RESULT $? "Service configuration file copied"
 
 systemctl daemon-reload &>> $LOG_FILE   #Reload the deamon
