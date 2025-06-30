@@ -1,7 +1,6 @@
 #!/bin/bash
 TIME_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
 START_TIME_STAMP=$( date +%S )
-END_TIME_STAMP=$( date +%S )
 Conf_File=/etc/redis/redis.conf
 USER_ID=$( id -u )
 SCRIPT_NAME=$(basename $0 | cut -d "." -f1 )
@@ -53,6 +52,8 @@ RESULT $? "Changing the listner port and protected mode"
 systemctl enable $pkg &>>$LOG_FILE
 systemctl start $pkg &>>$LOG_FILE
 RESULT $? "Enable and started $pkg"
+
+END_TIME_STAMP=$( date +%S )
 
 Total_time=$(( $END_TIME_STAMP - $START_TIME_STAMP ))
 Script excuted successfully at $Total_time seconds.
