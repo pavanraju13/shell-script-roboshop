@@ -111,18 +111,18 @@ else
 fi
 
 # Check schema before loading
-TABLE_TO_CHECK="users"
-TABLE_EXISTS=$(mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD -e "USE roboshop; SHOW TABLES LIKE '$TABLE_TO_CHECK';" 2>/dev/null | grep "$TABLE_TO_CHECK")
+
+TABLE_TO_CHECK="codes"
+TABLE_EXISTS=$(mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD -e "USE cities; SHOW TABLES LIKE '$TABLE_TO_CHECK';" 2>/dev/null | grep "$TABLE_TO_CHECK")
 
 if [ -z "$TABLE_EXISTS" ]; then
-  echo "Schema not found. Loading..." | tee -a $LOG_FILE
+  echo "Table '$TABLE_TO_CHECK' not found. Loading schema..." | tee -a $LOG_FILE
   mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/schema.sql &>> $LOG_FILE
-  mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/app-user.sql &>> $LOG_FILE
-  mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/master-data.sql &>> $LOG_FILE
-  RESULT $? "Schema loaded"
+  RESULT $? "Loaded schema"
 else
-  echo "Schema already loaded. Skipping..." | tee -a $LOG_FILE
+  echo "Table '$TABLE_TO_CHECK' already exists. Skipping schema load..." | tee -a $LOG_FILE
 fi
+
 
 systemctl restart shipping &>> $LOG_FILE
 RESULT $? "Restart shipping"
