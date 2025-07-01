@@ -12,7 +12,7 @@ Y="\e[34m"   #Yellow color
 M="\e[35m"   #Magenita colr
 N="\e[0m"     #Normal color
 
-echo "script started at $TIME_STAMP"
+echo "script started at $TIME_STAMP" | tee -a $LOG_FILE
 #This is a function
 RESULT() {
 
@@ -41,14 +41,14 @@ read -s MYSQL_PASSWORD
 
 if [ $MYSQL_USERNAME = root ] && [ $MYSQL_PASSWORD = RoboShop@1 ]
 then
-echo "username and password are correct" 
+echo "username and password are correct"  | tee -a $LOG_FILE
 else
-echo "username and password are incorrect" 
+echo "username and password are incorrect" | tee -a $LOG_FILE
 exit 3
 fi
 
 
-dnf install mysql-server -y &>> $LOG_FILE
+dnf install mysql-server -y &>> $LOG_FILE 
 RESULT $? "Installing mysql"
 
 systemctl enable mysqld &>> $LOG_FILE
@@ -58,4 +58,4 @@ RESULT $? "Enabled and started"
 mysql_secure_installation --set-$MYSQL_USERNAME-pass $MYSQL_PASSWORD &>> $LOG_FILE
 RESULT $? "configured the username and password of mysql" 
 END_TIME=$( date +%Y-%m-%d_%H-%M-%S )
-echo "script successfully completed at $END_TIME"
+echo "script successfully completed at $END_TIME" | tee -a $LOG_FILE
