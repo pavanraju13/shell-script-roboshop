@@ -4,6 +4,7 @@ USER_ID=$( id -u )
 SCRIPT_NAME=$(basename $0 | cut -d "." -f1 )
 LOG_FILE=/var/log/$SCRIPT_NAME.log
 
+
 R="\e[31m"   #Red color
 G="\e[32m"   #Green color
 B="\e[33m"   #Blue color
@@ -36,6 +37,13 @@ echo "Enter the username of MYSQL:"
 read -s MYSQL_USERNAME
 echo "Enter the password of MYSQL:"
 read -s MYSQL_PASSWORD
+
+if [ $MYSQL_USERNAME = root ] && [ $MYSQL_PASSWORD = RoboShop@1 ]
+then
+echo "username and password are correct"
+else
+echo "username and password are incorrect"
+fi
 
 
 dnf install mysql-server -y &>> $LOG_FILE
