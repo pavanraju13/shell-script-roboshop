@@ -22,8 +22,8 @@ M="\e[35m"   #Magenita colr
 N="\e[0m"     #Normal color
 
 echo "enter MYSQL_USERNAME:"
-echo "enter MYSQL_PASSWORD:"
 read -s MYSQL_USERNAME
+echo "enter MYSQL_PASSWORD:"
 read -s MYSQL_PASSWORD
 
 
