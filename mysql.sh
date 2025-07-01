@@ -43,6 +43,7 @@ then
 echo "username and password are correct"
 else
 echo "username and password are incorrect"
+exit 3
 fi
 
 
