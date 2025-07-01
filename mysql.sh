@@ -48,7 +48,7 @@ systemctl start mysqld  &>> $LOG_FILE
 RESULT $? "Enabled and started"
 
 # Test MySQL login
-mysql -u"$MYSQL_USERNAME" -p"$MYSQL_PASSWORD" -e "exit" &>> $LOG_FILE
+mysql -u"$MYSQL_USERNAME" -p"$MYSQL_PASSWORD" &>> $LOG_FILE
 
 if [ $? -ne 0 ]; then
   echo "Password is incorrect or not set. Running mysql_secure_installation..." | tee -a $LOG_FILE
