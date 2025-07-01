@@ -50,7 +50,7 @@ sed -i -e 's/127.0.0.1/0.0.0.0/g' -e 's/^protected-mode .*/protected-mode no/' "
 RESULT $? "Changing the listner port and protected mode"
 
 systemctl enable $pkg &>>$LOG_FILE
-systemctl start $pkg &>>$LOG_FILE
+systemctl restart $pkg &>>$LOG_FILE
 RESULT $? "Enable and started $pkg"
 
 END_TIME_STAMP=$( date +%S )
