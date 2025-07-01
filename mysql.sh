@@ -46,4 +46,4 @@ systemctl start mysqld  &>> $LOG_FILE
 RESULT $? "Enabled and started"
 
 mysql_secure_installation --set-$MYSQL_USERNAME-pass $MYSQL_PASSWORD &>> $LOG_FILE
-RESULT $? "Setted the username and password of mysql" 
+RESULT $? "configured the username and password of mysql" 
