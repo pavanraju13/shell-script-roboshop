@@ -52,7 +52,7 @@ fi
 dnf list installed $pkg1 &>> $LOG_FILE
 if [ $? -ne 0 ]
 then
-echo "$pkg1 is not installed..${Y} installing $pkg1 {N}"
+echo "$pkg1 is not installed..${Y}installing $pkg1{N}"
 dnf install $pkg1 -y &>> $LOG_FILE
 RESULT $? "Installing $pkg1"
 else
