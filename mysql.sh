@@ -33,16 +33,16 @@ echo -e "${R} Error Permission denied you don't have root privileges ${N}" | tee
 exit 1
 fi
 
-echo "Enter the username of MYSQL:$MYSQL_USERNAME"
+echo "Enter the username of MYSQL:" &>> $LOG_FILE
 read -s MYSQL_USERNAME
-echo "Enter the password of MYSQL:$MYSQL_PASSWORD"
+echo "Enter the password of MYSQL:" &>> $LOG_FILE
 read -s MYSQL_PASSWORD
 
 if [ $MYSQL_USERNAME = root ] && [ $MYSQL_PASSWORD = RoboShop@1 ]
 then
-echo "username and password are correct"
+echo "username and password are correct" 
 else
-echo "username and password are incorrect"
+echo "username and password are incorrect" 
 exit 3
 fi
 
