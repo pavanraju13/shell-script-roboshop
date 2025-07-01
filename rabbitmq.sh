@@ -68,8 +68,15 @@ RESULT $? "Enable and started"
 
 #creating user and password for rabbitmq to connect to the database from the backend (payments) component
 
-rabbitmqctl add_user roboshop $RABBITMQ_PASSWORD &>> $LOG_FILE
-RESULT $? "Rabbitmq username and password configured"
+# Check if RabbitMQ user exists
+rabbitmqctl list_users | grep -w "roboshop" &>> $LOG_FILE
+if [ $? -ne 0 ]; then
+  rabbitmqctl add_user roboshop $RABBITMQ_PASSWORD &>> $LOG_FILE
+  RESULT $? "Rabbitmq username and password configured"
+else
+  echo -e "RabbitMQ user roboshop already exists.. ${Y}skipping creation${N}" | tee -a $LOG_FILE
+fi
 
-rabbitmqctl set_permissions -p / $RABBITMQ_USERNAME ".*" ".*" ".*" &>> $LOG_FILE
+# Set permissions
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> $LOG_FILE
 RESULT $? "Rabbitmq provided permission"
