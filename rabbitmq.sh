@@ -46,6 +46,9 @@ then
 echo -e "Rabbitmq is not installed..${Y}installing4{N}"
 dnf install rabbitmq-server -y &>> $LOG_FILE
 RESULT $? "Installing Rabbitmq"
+else
+echo "rabbitmq already installed"
+fi
 
 systemctl enable rabbitmq-server &>> $LOG_FILE
 systemctl start rabbitmq-server &>> $LOG_FILE
