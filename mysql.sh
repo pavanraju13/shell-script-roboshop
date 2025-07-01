@@ -39,14 +39,6 @@ read -s MYSQL_USERNAME
 echo "Enter the password of MYSQL:" | tee -a $LOG_FILE
 read -s MYSQL_PASSWORD
 
-if [ $MYSQL_USERNAME = root ] && [ $MYSQL_PASSWORD = RoboShop@1 ]
-then
-echo "username and password are correct"  | tee -a $LOG_FILE
-else
-echo "username and password are incorrect" | tee -a $LOG_FILE
-exit 3
-fi
-
 
 dnf install mysql-server -y &>> $LOG_FILE 
 RESULT $? "Installing mysql"
