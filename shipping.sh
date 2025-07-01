@@ -118,6 +118,8 @@ TABLE_EXISTS=$(mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD -e "USE ci
 if [ -z "$TABLE_EXISTS" ]; then
   echo "Table '$TABLE_TO_CHECK' not found. Loading schema..." | tee -a $LOG_FILE
   mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/schema.sql &>> $LOG_FILE
+  mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/app-user.sql &>> $LOG_FILE
+  mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/master-data.sql &>> $LOG_FILE
   RESULT $? "Loaded schema"
 else
   echo "Table '$TABLE_TO_CHECK' already exists. Skipping schema load..." | tee -a $LOG_FILE
