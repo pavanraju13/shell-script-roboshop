@@ -63,7 +63,7 @@ mkdir $DIR
 RESULT $? "Directory created"
 fi
 
-curl -o $Temp_Folder https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>> $LOG_FILE
+curl -o $Temp_Folder /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip  &>> $LOG_FILE
 RESULT $? "downloaded the code into the $Temp_Folder"
 
 cd $DIR                                  #switched to the app directory
