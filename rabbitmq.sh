@@ -37,6 +37,8 @@ else
 echo -e "${R} Error Permission denied you don't have root privileges ${N}" | tee -a $LOG_FILE
 exit 1
 fi
+
+
 cp $Current_Path/rabbitmq.repo $REPO_FILE &>> $LOG_FILE
 RESULT $? "Copied the repo content to the default repo file"
 
@@ -48,6 +50,17 @@ dnf install rabbitmq-server -y &>> $LOG_FILE
 RESULT $? "Installing Rabbitmq"
 else
 echo "rabbitmq already installed"
+fi
+
+id $USER   &>> $LOG_FILE        #checking user present or not
+if [ $? -ne 0 ]     
+then
+echo "$USER is not created ...creating the user" &>> $LOG_FILE
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+RESULT $? "User created"
+else
+echo -e "$USER is already created..$Y skipping $N"
+RESULT $? "User already created"
 fi
 
 systemctl enable rabbitmq-server &>> $LOG_FILE
