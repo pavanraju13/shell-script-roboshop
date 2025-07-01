@@ -12,6 +12,7 @@ Y="\e[34m"   #Yellow color
 M="\e[35m"   #Magenita colr
 N="\e[0m"     #Normal color
 
+echo "script started at $TIME_STAMP"
 #This is a function
 RESULT() {
 
@@ -56,3 +57,5 @@ RESULT $? "Enabled and started"
 
 mysql_secure_installation --set-$MYSQL_USERNAME-pass $MYSQL_PASSWORD &>> $LOG_FILE
 RESULT $? "configured the username and password of mysql" 
+END_TIME=$( date +%Y-%m-%d_%H-%M-%S )
+echo "script successfully completed at $END_TIME"
