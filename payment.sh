@@ -19,9 +19,6 @@ M="\e[35m"   #Magenita colr
 N="\e[0m"     #Normal color
 
 
-echo "Enter rabbitmq password:"
-read -s RABBITMQ_PASSWORD
-
 #This is a function
 RESULT() {
 
