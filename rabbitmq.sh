@@ -12,8 +12,7 @@ Y="\e[34m"   #Yellow color
 M="\e[35m"   #Magenita colr
 N="\e[0m"     #Normal color
 
-echo "Enter rabbitmq username:"
-read RABBITMQ_USERNAME
+
 echo "Enter rabbitmq password:"
 read -s RABBITMQ_PASSWORD
 
@@ -69,7 +68,7 @@ RESULT $? "Enable and started"
 
 #creating user and password for rabbitmq to connect to the database from the backend (payments) component
 
-rabbitmqctl add_user $RABBITMQ_USERNAME $RABBITMQ_PASSWORD &>> $LOG_FILE
+rabbitmqctl add_user roboshop $RABBITMQ_PASSWORD &>> $LOG_FILE
 RESULT $? "Rabbitmq username and password configured"
 
 rabbitmqctl set_permissions -p / $RABBITMQ_USERNAME ".*" ".*" ".*" &>> $LOG_FILE
