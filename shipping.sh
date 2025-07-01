@@ -112,7 +112,7 @@ fi
 
 # Check schema before loading
 
-TABLE_TO_CHECK="codes"
+TABLE_TO_CHECK="users"
 TABLE_EXISTS=$(mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD -e "USE cities; SHOW TABLES LIKE '$TABLE_TO_CHECK';" 2>/dev/null | grep "$TABLE_TO_CHECK")
 
 if [ -z "$TABLE_EXISTS" ]; then
