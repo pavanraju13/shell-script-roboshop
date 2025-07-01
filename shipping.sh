@@ -103,7 +103,7 @@ RESULT $? "Reloaded, Enabled, and Started shipping service"
 # Install pkg2 if not installed
 dnf list installed $pkg2 &>> $LOG_FILE
 if [ $? -ne 0 ]; then
-  echo "$pkg2 is not installed.. ${Y}installing $pkg2${N}"
+  echo -e "$pkg2 is not installed.. ${Y}installing $pkg2${N}"
   dnf install $pkg2 -y &>> $LOG_FILE
   RESULT $? "Installing $pkg2"
 else
