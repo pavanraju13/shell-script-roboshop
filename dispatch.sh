@@ -49,7 +49,7 @@ RESULT $? "Installing golang"
 # Create user if not exists
 id $USER &>> $LOG_FILE
 if [ $? -ne 0 ]; then
-  echo "${M}Creating user $USER${N}"
+  echo -e "${M}Creating user $USER${N}"
   useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" $USER
   RESULT $? "$USER created"
 else
@@ -87,8 +87,8 @@ cp $Current_Path/dispatch.service $Service &>> $LOG_FILE
 RESULT $? "Copied the service configuration"
 
 systemctl daemon-reload &>> $LOG_FILE
-systemctl enable shipping &>> $LOG_FILE
-systemctl start shipping &>> $LOG_FILE
-RESULT $? "Reloaded, Enabled, and Started shipping service"
+systemctl enable dispatch &>> $LOG_FILE
+systemctl start dispatch &>> $LOG_FILE
+RESULT $? "Reloaded, Enabled, and Started dispatch service"
 
 
