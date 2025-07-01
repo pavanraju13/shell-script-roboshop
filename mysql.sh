@@ -55,16 +55,18 @@ systemctl enable mysqld &>> $LOG_FILE
 systemctl start mysqld  &>> $LOG_FILE
 RESULT $? "Enabled and started"
 
-mysql_secure_installation --set-$MYSQL_USERNAME-pass $MYSQL_PASSWORD &>> $LOG_FILE
+mysql -u$MYSQL_USERNAME -p$MYSQL_PASSWORD &>> $LOG_FILE
+
+if [ $? -ne 0 ]
+then
+echo "password is incorrect or not set"
+mysql_secure_installation --set-root-pass "$MYSQL_PASSWORD" &>> $LOG_FILE
 RESULT $? "configured the username and password of mysql" 
+else
+echo "mysql password already set"
+fi 
+
 END_TIME=$( date +%Y-%m-%d_%H-%M-%S )
 echo "script successfully completed at $END_TIME" | tee -a $LOG_FILE
 
 
-dnf list installed mysql 
-if [ $? -eq 0 ]
-then 
-echo "package already installed"
-else
-echo "not installed"
-fi
