@@ -84,7 +84,7 @@ RESULT $? "Service configuration file copied"
 systemctl daemon-reload &>> $LOG_FILE   #Reload the deamon
 RESULT $? "deamon reload"
 
-systemctl enable catalogue &>> $LOG_FILE    #start enable restart
-systemctl start catalogue &>> $LOG_FILE
-systemctl restart catalogue &>> $LOG_FILE
+systemctl enable payment &>> $LOG_FILE    #start enable restart
+systemctl start payment &>> $LOG_FILE
+systemctl restart payment &>> $LOG_FILE
 RESULT $? "Enabled,started and restarted"
