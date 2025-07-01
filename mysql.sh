@@ -59,3 +59,12 @@ mysql_secure_installation --set-$MYSQL_USERNAME-pass $MYSQL_PASSWORD &>> $LOG_FI
 RESULT $? "configured the username and password of mysql" 
 END_TIME=$( date +%Y-%m-%d_%H-%M-%S )
 echo "script successfully completed at $END_TIME" | tee -a $LOG_FILE
+
+
+dnf list installed mysql 
+if [ $? -eq 0 ]
+then 
+echo "package already installed"
+else
+echo "not installed"
+fi
