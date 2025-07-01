@@ -111,12 +111,27 @@ RESULT $? "Installing $pkg2"
 else
 echo " $pkg2 already installed"
 fi
+# Set a sample table to check
+TABLE_TO_CHECK="users"  # Change this to any known table that will exist after loading
 
-mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/schema.sql &>> $LOG_FILE
-mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/app-user.sql &>> $LOG_FILE
-mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/master-data.sql &>> $LOG_FILE
-RESULT $? "To load the schema"
+# Check if the table exists
+TABLE_EXISTS=$(mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD -e "USE roboshop; SHOW TABLES LIKE '$TABLE_TO_CHECK';" 2>/dev/null | grep "$TABLE_TO_CHECK")
 
+if [ -z "$TABLE_EXISTS" ]; then
+  echo "Schema not found. Loading now..." | tee -a $LOG_FILE
+  mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/schema.sql &>> $LOG_FILE
+  mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/app-user.sql &>> $LOG_FILE
+  mysql -h $hostname -u$MYSQL_USERNAME -p$MYSQL_PASSWORD < /app/db/master-data.sql &>> $LOG_FILE
+  RESULT $? "Schema loaded"
+else
+  echo "Schema already loaded. Skipping..." | tee -a $LOG_FILE
+fi
+
+systemctl restart shipping &>> $LOG_FILE
+RESULT $? 'restart shipping"
+
+END_STAMP=$( date +%Y-%m-%d_%H-%M-%S )
+echo "scrript completed at $END_STAMP"
 
 
 
