@@ -92,6 +92,10 @@ RESULT $? "Unzipped the application code"
 mvn clean package &>> $LOG_FILE
 RESULT $? "Maven clean package"
 
+mv target/shipping-1.0.jar shipping.jar &>> $LOG_FILE
+RESULT $? "moved to target directory"
+
+
 cp $Current_Path/shipping.service $Service &>> $LOG_FILE
 RESULT $? "Copied the service configuration"
 
