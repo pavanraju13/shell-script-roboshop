@@ -59,5 +59,5 @@ RESULT $? "Enable and started"
 rabbitmqctl add_user $RABBITMQ_USERNAME $RABBITMQ_PASSWORD &>> $LOG_FILE
 RESULT $? "Rabbitmq username and password configured"
 
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> $LOG_FILE
+rabbitmqctl set_permissions -p / $RABBITMQ_USERNAME ".*" ".*" ".*" &>> $LOG_FILE
 RESULT $? "Rabbitmq provided permission"
