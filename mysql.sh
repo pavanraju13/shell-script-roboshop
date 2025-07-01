@@ -34,7 +34,7 @@ fi
 
 echo "Enter the username of MYSQL:"
 read -s MYSQL_USERNAME
-echo "Enter the password of MYSQL"
+echo "Enter the password of MYSQL:"
 read -s MYSQL_PASSWORD
 
 
