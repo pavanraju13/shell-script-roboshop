@@ -55,16 +55,17 @@ systemctl enable mysqld &>> $LOG_FILE
 systemctl start mysqld  &>> $LOG_FILE
 RESULT $? "Enabled and started"
 
-mysql -u$MYSQL_USERNAME -p$MYSQL_PASSWORD &>> $LOG_FILE
+# Test MySQL login
+mysql -u"$MYSQL_USERNAME" -p"$MYSQL_PASSWORD" -e "exit" &>> $LOG_FILE
 
-if [ $? -ne 0 ]
-then
-echo "password is incorrect or not set"
-mysql_secure_installation --set-root-pass "$MYSQL_PASSWORD" &>> $LOG_FILE
-RESULT $? "configured the username and password of mysql" 
+if [ $? -ne 0 ]; then
+  echo "Password is incorrect or not set. Running mysql_secure_installation..." | tee -a $LOG_FILE
+  mysql_secure_installation --set-root-pass "$MYSQL_PASSWORD" &>> $LOG_FILE
+  RESULT $? "Configured the root password for MySQL"
 else
-echo "mysql password already set"
-fi 
+  echo "MySQL password already set. Skipping secure installation." | tee -a $LOG_FILE
+fi
+
 
 END_TIME=$( date +%Y-%m-%d_%H-%M-%S )
 echo "script successfully completed at $END_TIME" | tee -a $LOG_FILE
