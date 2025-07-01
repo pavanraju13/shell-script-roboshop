@@ -43,7 +43,7 @@ RESULT $? "Copied the repo content to the default repo file"
 dnf list installed rabbitmq &>> $LOG_FILE
 if [ $? -ne 0 ]
 then
-echo -e "Rabbitmq is not installed..${Y}installing4{N}"
+echo -e "Rabbitmq is not installed..${Y}installing${N}"
 dnf install rabbitmq-server -y &>> $LOG_FILE
 RESULT $? "Installing Rabbitmq"
 else
