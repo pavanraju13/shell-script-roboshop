@@ -4,6 +4,7 @@ AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-0529dc4ac677bb0be"
 
 Time_stamp=$( date +%Y-%m-%d-%H-%M-%S )
+env=dev
 DOMAIN_NAME=clouddevops.life
 ZONE_ID=Z0511103ULD2JWV1IRW1
 for instance in $@
@@ -12,10 +13,10 @@ do
 if [ $instance != "frontend" ]
 then
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PrivateIpAddress" --output text)
-        RECORD_NAME="$instance.$DOMAIN_NAME"
+        RECORD_NAME="$instance.$env.$DOMAIN_NAME"
 else
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
-        RECORD_NAME="$instance.$DOMAIN_NAME"
+        RECORD_NAME="$instance.$env.$DOMAIN_NAME"
 fi
     echo "$instance IP address: $IP"
 

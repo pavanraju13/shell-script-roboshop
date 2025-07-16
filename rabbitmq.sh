@@ -80,3 +80,8 @@ fi
 # Set permissions
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>> $LOG_FILE
 RESULT $? "Rabbitmq provided permission"
+
+
+
+
+
