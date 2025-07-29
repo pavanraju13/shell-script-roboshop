@@ -3,7 +3,7 @@
 RECORD_NAME=$1
 IP=$2
 instance=$3
-ZONE_ID=Z0451307UAMGLJB05V8F
+ZONE_ID=Z047425513H35BXPZYYXT
 
 aws route53 change-resource-record-sets \
     --hosted-zone-id $ZONE_ID \
