@@ -4,7 +4,7 @@ AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-0529dc4ac677bb0be"
 
 Time_stamp=$( date +%Y-%m-%d-%H-%M-%S )
-env=dev
+
 DOMAIN_NAME=clouddevops.life
 
 for instance in $@
